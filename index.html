@@ -21,8 +21,27 @@
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
 
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontFSize = 18;
+        Chart.defaults.global.defaultFontColor = 'red';
+        Chart.pluginService.register({
+            beforeDraw: function (chart, easing) {
+                if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
+                    var helpers = Chart.helpers;
+                    var ctx = chart.chart.ctx;
+                    var chartArea = chart.chartArea;
+
+                    ctx.save();
+                    ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                    ctx.restore();
+                }
+            }
+        });
+
         let ymcaYogaClassChart = new Chart(myChart, {
-            type:'bar',
+            type:'line',
             data:{
                 labels:[
                     'Robinhood Road', 'Kathleen Price Bryan Family', 'Hayes-Taylor Memorial',
@@ -41,14 +60,43 @@
                         'blue',
                         'pink',
                         'blue',
-                        'purple',
+                        'purple',   
                         'orange'
                     ],
-                    borderWidth:4,
-                    borderColor:'#777'
+                    borderWidth:1,
+                    borderColor:'#000',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
                 }],
             },
-            options:{}
+            options:{
+                title:{
+                    display:true,
+                    text:'Most Popular YMCAs in NC',
+                    fontSize:25
+                },
+                legend:{
+                    display:false,
+                    position:'right',
+                    labels:{
+                        fontColor:'#000'
+                    }
+                },
+                layout:{
+                    padding:{
+                        left:50,
+                        right:0,
+                        bottom:0,
+                        top:0   
+                    }
+                },
+                tooltips:{
+                    enabled:true
+                },
+                chartArea:{
+                    backgroundColor:'#000'
+                }
+            }
         });
     </script>
 </body>
