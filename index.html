@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <title>My Chart</title>
+</head>
+<body>
+    <div class="container">
+        <canvas id="myChart">
+
+        </canvas>
+    </div>
+
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        let ymcaYogaClassChart = new Chart(myChart, {
+            type:'bar',
+            data:{
+                labels:[
+                    'Robinhood Road', 'Kathleen Price Bryan Family', 'Hayes-Taylor Memorial',
+                    'Alexander W Spears III', 'Mary Perry Ragsdale'
+                    ],
+                datasets:[{
+                    label:'Number of Classes Per Week',
+                    data:[
+                        50,
+                        17,
+                        0,
+                        19,
+                        16
+                    ],
+                    backgroundColor:[
+                        'blue',
+                        'pink',
+                        'blue',
+                        'purple',
+                        'orange'
+                    ],
+                    borderWidth:4,
+                    borderColor:'#777'
+                }],
+            },
+            options:{}
+        });
+    </script>
+</body>
+</html>
